@@ -1,7 +1,5 @@
 import pandas as pd
 
-import ipc
-
 COLS = ['Fecha', 'Date', 'Dia']
 
 
@@ -36,3 +34,9 @@ def get_date_ipc(df: pd.DataFrame) -> pd.DataFrame:
     df['Año'] = df['Periodo'].dt.year
     df['Date'] = df['Periodo'] + pd.offsets.MonthEnd(0)
     return df
+
+def main():
+    print(f'Se corrió el main de {__name__}')
+
+if __name__ == '__main__':
+    main()

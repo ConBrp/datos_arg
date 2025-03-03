@@ -136,3 +136,8 @@ def get_ponderadores_ipc() -> pd.DataFrame:
     ponderadores['Codigo'] = ponderadores['Codigo'].astype(str)
     return ponderadores
 
+def main():
+    print(f'Se corrió el main de {__name__}')
+
+if __name__ == '__main__':
+    main()
