@@ -116,7 +116,7 @@ def get_aper_ipc(prepagas: bool = True) -> pd.DataFrame:
     """
     Devuelve un df con las aperturas del IPC.
     :param prepagas: Si corrige el código de prepagas o no.
-    :return: df "Codigo", "Periodo", "Indice_IPC", "Region".
+    :return: df 'Codigo', 'Periodo', 'Indice_IPC', 'Region'.
     """
     aperturas = get_file_indec(2)
     aperturas['Codigo'] = aperturas['Codigo'].astype(str)
