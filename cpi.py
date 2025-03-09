@@ -8,10 +8,10 @@ FILE_CPI1913 = creds.cpi_script['FILE_CPI1913']
 def get_cpi() -> pd.DataFrame:
     """
     Devuelve el IPC del archivo CPI1913.xlsx, con el CPI base 1967.
-    :return: df 'CPI', 'InflaMensual', 'CantD'
+    :return: df 'CPI', 'InflaMensual', 'CantD'.
     """
-    cpi = pd.read_excel(FILE_CPI1913)[['Fecha', 'CPI']].copy() # TODO hacer el parse de la fecha acá.
-    cpi['Fecha'] = pd.to_datetime(cpi['Fecha'], format='%Y-%m-%d')
+    cpi = pd.read_excel(FILE_CPI1913, parse_dates=['Fecha'])[['Fecha', 'CPI']].copy()
+    # cpi['Fecha'] = pd.to_datetime(cpi['Fecha'], format='%Y-%m-%d')
     cpi['InflaMensual'] = cpi['CPI'].pct_change()
     cpi = cod.get_date(cpi, day=False)
     cpi['CantD'] = cpi.apply(lambda row: calendar.monthrange(row['Año'], row['Mes'])[1], axis=1)
@@ -37,3 +37,9 @@ def get_act_cap(df: pd.DataFrame, us: bool = False) -> pd.DataFrame:
     df[capitalizador_column] = df[capitalizador_column] / df[capitalizador_column].iloc[-1]
 
     return df
+
+def main():
+    print(f'Se corrió el main de {__name__}')
+
+if __name__ == '__main__':
+    main()

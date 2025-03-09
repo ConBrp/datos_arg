@@ -13,7 +13,7 @@ FILE_INFLA_EMPALMADA = creds.ipc_script['FILE_INFLA_EMPALMADA']
 def get_infla() -> (tuple[str, str], tuple[int, int]):
     """
     Devuelve los meses estimados en el archivo IPC2000.xlsx.
-    :return: (mes, mes), (est, est)
+    :return: (mes, mes), (est, est).
     """
     return creds.ipc_script['INFLA_ESTIMADA']
 
@@ -40,7 +40,7 @@ def get_file_indec(tipo: int = 1) -> pd.DataFrame|None:
 def get_ipc() -> pd.DataFrame:
     """
     Devuelve un df con datos mensuales del IPC, del archivo IPC2000.xlsx.
-    :return: df 'Fecha', 'Date', 'IPC', 'InflaMensual', 'CantD'
+    :return: df 'Fecha', 'Date', 'IPC', 'InflaMensual', 'CantD'.
     """
     ipc = pd.read_excel(FILE_INFLA_EMPALMADA)
     ipc['Fecha'] = pd.to_datetime(ipc['Fecha'], format='%Y-%m-%d')
@@ -70,7 +70,7 @@ def get_act_cap(df: pd.DataFrame) -> pd.DataFrame:
 def get_ipc_indec() -> pd.DataFrame:
     """
     Devuelve un df con datos mensuales del IPC, del archivo del INDEC.
-    :return: df 'IPC', 'VarMoM', 'VarYoY', 'InflaMensual', 'Date'
+    :return: df 'IPC', 'VarMoM', 'VarYoY', 'InflaMensual', 'Date'.
     """
     df = get_file_indec()
     nacional = df.query("Codigo == '0' & Region == 'Nacional'")[['Periodo', 'Indice_IPC', 'v_m_IPC', 'v_i_a_IPC']].copy().reset_index(drop=True)
@@ -89,7 +89,7 @@ def get_div_ipc(tipo: int = 1) -> pd.DataFrame:
         2. Categorías: estacional, núcleo y regulados.
         3. Bienes y Servicios: B y S.
     :param tipo: Tipo a seleccionar.
-    :return: df 'Codigo', 'Descripcion', 'Indice_IPC', 'Date' (Con día)
+    :return: df 'Codigo', 'Descripcion', 'Indice_IPC', 'Date' (Con día).
     """
     general = get_file_indec()
     columnas = ['Codigo', 'Descripcion', 'Periodo', 'Indice_IPC']
